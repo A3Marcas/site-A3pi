@@ -1,0 +1,86 @@
+---
+// src/layouts/Base.astro
+// Layout raiz — todas as páginas herdam deste arquivo
+
+interface Props {
+  titulo: string;
+  descricao: string;
+  imagem?: string;
+  canonical?: string;
+}
+
+const {
+  titulo,
+  descricao,
+  imagem = '/images/og-default.jpg',
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const nomeEmpresa = 'A3 Propriedade Intelectual';
+const tituloCompleto = titulo === nomeEmpresa
+  ? titulo
+  : `${titulo} | ${nomeEmpresa}`;
+
+// Schema.org — diz ao Google que este é um escritório jurídico de PI
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": nomeEmpresa,
+  "description": "Registro de marcas e propriedade intelectual no INPI para empresas e profissionais em todo o Brasil.",
+  "url": "https://a3pi.com.br",
+  "telephone": "+55-83-XXXX-XXXX",
+  "email": "contato@a3pi.com.br",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "João Pessoa",
+    "addressRegion": "PB",
+    "addressCountry": "BR"
+  },
+  "areaServed": "BR",
+  "serviceType": ["Registro de Marcas", "Propriedade Intelectual", "Consultoria INPI"]
+};
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO básico -->
+  <title>{tituloCompleto}</title>
+  <meta name="description" content={descricao} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={tituloCompleto} />
+  <meta property="og:description" content={descricao} />
+  <meta property="og:image" content={new URL(imagem, Astro.site).href} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content={nomeEmpresa} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={tituloCompleto} />
+  <meta name="twitter:description" content={descricao} />
+  <meta name="twitter:image" content={new URL(imagem, Astro.site).href} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <!-- Pré-conexão Google Fonts (performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+  <slot />
+</body>
+</html>

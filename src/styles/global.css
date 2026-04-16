@@ -1,0 +1,171 @@
+/* ============================================================
+   A3 Propriedade Intelectual — Estilos Globais
+   Para trocar cores: edite apenas as variáveis em :root
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Paleta Extraída da Imagem */
+  --azul:       #2D1B41;   /* Roxo Profundo do fundo */
+  --azul-medio: #432C5E;   /* Roxo mais claro para variações */
+  --azul-claro: #F4F0F7;   /* Fundo das seções claras */
+  --dourado:    #8E2D45;   /* Vinho/Cereja do botão */
+  --dourado-claro: #A6445C; /* Vinho para efeito de hover */
+  
+  --branco:     #FFFFFF;
+  --texto:      #FFFFFF;
+  --cinza:      #B3A7C1;
+  
+  --font-titulo: 'Playfair Display', Georgia, serif;
+  --font-corpo:  'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-corpo);
+  color: var(--texto);
+  background: var(--branco);
+  line-height: 1.7;
+}
+
+/* Tipografia */
+h1, h2, h3, h4 {
+  font-family: var(--font-titulo);
+  line-height: 1.25;
+  color: var(--azul);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 600; }
+h3 { font-size: clamp(1.1rem, 2.5vw, 1.35rem); font-weight: 600; }
+p  { font-size: 1rem; line-height: 1.75; color: var(--cinza-escuro); }
+
+a { color: var(--azul-medio); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; display: block; }
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section { padding: var(--secao-v) 0; }
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-family: var(--font-corpo);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primario {
+  background: var(--dourado);
+  color: var(--branco);
+  border-color: var(--dourado);
+}
+.btn-primario:hover {
+  background: #9A7009;
+  border-color: #9A7009;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--sombra-hover);
+}
+
+.btn-secundario {
+  background: transparent;
+  color: var(--branco);
+  border-color: rgba(255,255,255,0.6);
+}
+.btn-secundario:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--branco);
+  text-decoration: none;
+}
+
+.btn-contorno {
+  background: transparent;
+  color: var(--azul);
+  border-color: var(--azul);
+}
+.btn-contorno:hover {
+  background: var(--azul);
+  color: var(--branco);
+  text-decoration: none;
+}
+
+/* Tag / badge */
+.tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--dourado-claro);
+  color: var(--dourado);
+}
+
+/* Cards */
+.card {
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--sombra-card);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-2px);
+}
+
+/* Divisor decorativo */
+.divisor {
+  width: 48px;
+  height: 3px;
+  background: var(--dourado);
+  border-radius: 2px;
+  margin: 16px 0 24px;
+}
+
+/* Utilitários */
+.text-center { text-align: center; }
+.text-dourado { color: var(--dourado); }
+.bg-azul    { background: var(--azul); }
+.bg-claro   { background: var(--cinza-claro); }
+.bg-azul-claro { background: var(--azul-claro); }
+
+/* Grade responsiva */
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+
+@media (max-width: 900px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 600px) {
+  :root { --secao-v: 64px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}

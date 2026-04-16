@@ -1,0 +1,123 @@
+---
+// src/components/Header.astro
+const nav = [
+  { href: '#como-funciona', label: 'Como funciona' },
+  { href: '#servicos',      label: 'Serviços'      },
+  { href: '#sobre',         label: 'Quem somos'    },
+  { href: '#faq',           label: 'FAQ'           },
+];
+
+// Configuração do WhatsApp para o botão do cabeçalho
+const whatsappNumber = "5583981436560"; 
+const whatsappMessage = encodeURIComponent("Olá! Gostaria de falar com um especialista sobre registro de marca.");
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+---
+
+<header class="header" id="header">
+  <div class="container header-inner">
+
+    <a href="/" class="logo" aria-label="A3 Propriedade Intelectual — voltar ao início">
+      <div class="logo-provisional">
+        <span class="logo-a3">A3</span>
+        <div class="logo-texto">
+          <span class="logo-linha1">Propriedade</span>
+          <span class="logo-linha2">Intelectual</span>
+        </div>
+      </div>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegação principal">
+      {nav.map(item => (
+        <a href={item.href} class="nav-link">{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <a href={whatsappLink} target="_blank" class="btn btn-primario btn-header">Falar com especialista</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Menu mobile">
+    {nav.map(item => (
+      <a href={item.href} class="nav-mobile-link">{item.label}</a>
+    ))}
+    <a href={whatsappLink} target="_blank" class="btn btn-primario" style="margin-top:8px;text-align:center">
+      Falar com especialista
+    </a>
+  </nav>
+</header>
+
+<style>
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #2D1B41; /* Roxo Profundo */
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 24px;
+}
+
+/* Forçando cor branca nos links */
+.header-inner a, .nav-mobile-link {
+  color: #FFFFFF !important;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Logo Estilizada */
+.logo-provisional { display: flex; align-items: center; gap: 10px; }
+.logo-a3 {
+  font-family: serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFFFFF !important;
+  border-right: 2px solid #8E2D45; /* Linha Vinho */
+  padding-right: 10px;
+  line-height: 1;
+}
+.logo-texto { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-linha1 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.logo-linha2 { font-size: 0.78rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: #A39BB0; }
+
+/* Menu Desktop */
+.nav-desktop { display: flex; align-items: center; gap: 4px; }
+.nav-link {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.nav-link:hover { background: rgba(255,255,255,0.1); }
+
+.header-actions { display: flex; align-items: center; gap: 12px; }
+
+/* Botão em Vinho Marsala */
+.btn-primario {
+  background-color: #8E2D45 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s;
+  display: inline-block;
+}
+
+.btn-primario:hover { background-color: #A63D56 !important; }
+
+/* Mobile */
+.hamburger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: none; border: none; cursor: pointer; }
+.hamburger span { display: block; width: 100%; height: 2px; background: #FFFFFF; border-radius: 2px; }
+.nav-mobile { display: none; flex-direction: column; gap: 4px; padding: 16px 24px 20px; border-top: 1px solid rgba(

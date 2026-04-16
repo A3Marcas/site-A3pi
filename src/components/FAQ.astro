@@ -1,0 +1,81 @@
+  ---
+  // src/components/FAQ.astro
+  const faqs = [
+    {
+      pergunta: "Por que é fundamental registrar minha marca?",
+      resposta: "No Brasil, a propriedade de uma marca é garantida apenas a quem detém o registro oficial. Sem ele, sua empresa fica vulnerável ao risco de perda do nome comercial, impedimento de uso da própria identidade e a necessidade de reiniciar toda a operação do zero."
+    },
+    {
+      pergunta: "O que o registro efetivamente protege?",
+      resposta: "O registro assegura exclusividade sobre o nome da empresa, o logotipo e a identidade visual da marca em todo o território nacional, impedindo que terceiros utilizem elementos idênticos ou semelhantes que possam causar confusão ao consumidor."
+    },
+    {
+      pergunta: "Já utilizo o nome há tempo. Ainda assim preciso registrar?",
+      resposta: "Sim. O uso prévio, por si só, não confere proteção jurídica plena. Caso outra empresa solicite o registro antes de você, ela terá prioridade legal, o que pode obrigar você a abandonar o uso da marca, mesmo que tenha sido o primeiro a criá-la."
+    },
+    {
+      pergunta: "Quais são os custos e o prazo médio do processo?",
+      resposta: "O investimento é reduzido quando comparado aos prejuízos financeiros de uma perda de marca. O processo tramita perante o Instituto Nacional da Propriedade Industrial (INPI) e leva, em média, de 8 meses a 2 anos até a concessão final."
+    },
+    {
+      pergunta: "Quais são os riscos de não possuir o registro?",
+      resposta: "A ausência de registro deixa o negócio exposto a notificações judiciais e processos por uso indevido. O custo de uma transição forçada — incluindo mudança de fachadas, redes sociais e materiais publicitários — é significativamente superior ao investimento no registro preventivo."
+    },
+    {
+      pergunta: "O registro de marca deve ser considerado um investimento ou uma despesa?",
+      resposta: "Trata-se de um investimento estratégico. O registro valoriza o ativo intangível da empresa, permite a expansão através de franquias ou licenciamentos, transmite profissionalismo ao mercado e evita litígios onerosos no futuro."
+    },
+    {
+      pergunta: "Qual é o prazo de validade da proteção da marca?",
+      resposta: "O registro tem validade de 10 anos, podendo ser renovado sucessivamente por períodos iguais de forma indefinida, garantindo a proteção do seu patrimônio por tempo indeterminado."
+    }
+  ];
+  ---
+
+  <section id="faq" style="padding: 100px 0; background-color: #FFFFFF; font-family: sans-serif;">
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+      
+      <div style="text-align: center; margin-bottom: 60px;">
+        <span style="color: #8E2D45; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; display: block; margin-bottom: 10px;">
+          Suas dúvidas respondidas
+        </span>
+        <h2 style="color: #2D1B41; font-size: 42px; margin: 0; font-weight: 800; line-height: 1.2;">
+          Perguntas Frequentes
+        </h2>
+        <div style="width: 60px; height: 3px; background-color: #8E2D45; margin: 20px auto 0;"></div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 15px;">
+        {faqs.map(item => (
+          <details style="background: #F9F7FA; border-radius: 12px; border: 1px solid #EEE; transition: all 0.3s ease; cursor: pointer;">
+            <summary style="padding: 25px; color: #2D1B41; font-weight: 700; font-size: 18px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              {item.pergunta}
+              <span style="color: #8E2D45; font-size: 24px;">+</span>
+            </summary>
+            <div style="padding: 0 25px 25px 25px; color: #444444; font-size: 16px; line-height: 1.7; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+              {item.resposta}
+            </div>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    /* Pequeno ajuste para esconder o triângulo padrão do navegador */
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    
+    details[open] {
+      border-color: #8E2D45 !important;
+      background-color: #FFFFFF !important;
+      box-shadow: 0 10px 30px rgba(45, 27, 65, 0.08);
+    }
+
+    details[open] summary span {
+      transform: rotate(45deg);
+      color: #2D1B41 !important;
+    }
+  </style>

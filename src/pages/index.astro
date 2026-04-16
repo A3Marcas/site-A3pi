@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Servicos from '../components/Servicos.astro';
+import ComoFunciona from '../components/ComoFunciona.astro';
+import Sobre from '../components/Sobre.astro';   // NOVO
+import FAQ from '../components/FAQ.astro';     // NOVO
+import Footer from '../components/Footer.astro';
+---
+
+<Base 
+  titulo="A3 Propriedade Intelectual | Especialistas em INPI" 
+  descricao="Registro de marcas e patentes com segurança jurídica total.">
+  <Header />
+  <main>
+    <Hero />
+    <Sobre />
+    <Servicos />
+    <ComoFunciona />
+    <FAQ />
+  </main>
+  <Footer />
+</Base>

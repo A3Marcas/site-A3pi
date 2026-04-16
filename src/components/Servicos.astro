@@ -1,0 +1,221 @@
+---
+// src/components/Servicos.astro
+
+const servicos = [
+  {
+    titulo: 'Registro de Marca Nacional',
+    descricao: 'Proteja sua marca no território brasileiro. Inclui busca prévia, classificação Nice, protocolo no INPI e acompanhamento até a concessão.',
+    preco: 'A partir de R$ 1.997',
+    destaque: false,
+    itens: [
+      'Busca de anterioridade no INPI',
+      'Definição da classe Nice',
+      'Elaboração e protocolo do pedido',
+      'Monitoramento do processo',
+      'Resposta a exigências',
+    ],
+  },
+  {
+    titulo: 'Registro + Monitoramento Ativo',
+    descricao: 'Tudo do plano essencial mais vigilância contínua de sua marca após o registro. Receba alertas de pedidos conflitantes e proteja seu ativo.',
+    preco: 'A partir de R$ 2.497',
+    destaque: true,
+    itens: [
+      'Tudo do Registro Nacional',
+      'Monitoramento pós-concessão',
+      'Alertas de conflito por e-mail',
+      'Relatório semestral de status',
+      'Consultoria prioritária',
+    ],
+  },
+  {
+    titulo: 'Consulta de Viabilidade',
+    descricao: 'Antes de investir no registro, verifique se sua marca tem chances reais de aprovação. Relatório técnico completo em até 48 horas.',
+    preco: 'R$ 290',
+    destaque: false,
+    itens: [
+      'Busca na base do INPI',
+      'Análise de colidência',
+      'Relatório técnico escrito',
+      'Recomendação de estratégia',
+      'Sem compromisso de contratação',
+    ],
+  },
+];
+---
+
+<section id="servicos" class="servicos-section">
+  <div class="container">
+    <div class="cabecalho text-center">
+      <span class="tag-vinho">Nossos serviços</span>
+      <h2 class="titulo-servicos">Soluções em propriedade intelectual</h2>
+      <div class="divisor-vinho"></div>
+      <p class="subtitulo-servicos">
+        Honorários transparentes e sem taxas ocultas.
+        As taxas oficiais do INPI são cobradas à parte e informadas antes do início.
+      </p>
+    </div>
+
+    <div class="grid-3 servicos-grade">
+      {servicos.map(s => (
+        <div class={`card servico-card ${s.destaque ? 'servico-destaque' : ''}`}>
+          {s.destaque && <div class="badge-vinho">Mais contratado</div>}
+          <h3>{s.titulo}</h3>
+          <p class="servico-desc">{s.descricao}</p>
+          <div class="servico-preco">{s.preco}</div>
+          <ul class="servico-itens">
+            {s.itens.map(item => (
+              <li>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8l3.5 3.5L13 4.5" stroke="#8E2D45"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="#contato" class={`btn-acao ${s.destaque ? 'btn-vinho-full' : 'btn-vinho-outline'}`}>
+            Solicitar orçamento
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <p class="aviso-inpi">
+      * As taxas oficiais do INPI variam conforme o porte da empresa (MEI, ME, EPP, demais).
+      Informaremos o valor exato antes do protocolo.
+      <a href="https://www.gov.br/inpi/pt-br/servicos/marcas/tabela-de-retribuicoes" target="_blank" rel="noopener">
+        Ver tabela oficial do INPI →
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+.servicos-section { padding: 80px 0; background-color: #FFFFFF; }
+.cabecalho { margin-bottom: 56px; text-align: center; }
+
+.tag-vinho {
+    color: #8E2D45;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+}
+
+.titulo-servicos { color: #2D1B41; margin-top: 12px; font-size: 2.5rem; }
+
+.divisor-vinho { 
+    width: 60px; 
+    height: 3px; 
+    background: #8E2D45; 
+    margin: 16px auto 0; 
+}
+
+.subtitulo-servicos {
+    max-width: 520px; 
+    margin: 20px auto 0; 
+    color: #4A4A4A; /* Cinza escuro para leitura nítida */
+    font-size: 1.05rem;
+}
+
+.servicos-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; align-items: stretch; }
+
+.servico-card {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 30px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.servico-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(45, 27, 65, 0.1); }
+
+.servico-destaque {
+  border: 2px solid #8E2D45;
+  transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(142, 45, 69, 0.12);
+}
+
+.badge-vinho {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #8E2D45;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 20px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+
+.servico-card h3 { color: #2D1B41; margin-bottom: 15px; font-size: 1.4rem; }
+
+.servico-desc { 
+    font-size: 0.95rem; 
+    color: #4A4A4A !important; /* Corrigindo a legibilidade invisível */
+    margin-bottom: 20px; 
+    line-height: 1.5;
+}
+
+.servico-preco {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2D1B41;
+  padding: 15px 0;
+  border-top: 1px solid #F0F0F0;
+  border-bottom: 1px solid #F0F0F0;
+  margin-bottom: 25px;
+}
+
+.servico-itens {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  flex-grow: 1;
+}
+
+.servico-itens li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #2D1B41; /* Texto nítido */
+  margin-bottom: 12px;
+}
+
+/* Botões Customizados */
+.btn-acao {
+    display: inline-flex;
+    justify-content: center;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-vinho-full { background: #8E2D45; color: #FFFFFF; border: none; }
+.btn-vinho-full:hover { background: #A6445C; }
+
+.btn-vinho-outline { background: transparent; border: 2px solid #8E2D45; color: #8E2D45; }
+.btn-vinho-outline:hover { background: #8E2D45; color: #FFFFFF; }
+
+.aviso-inpi {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.aviso-inpi a { color: #8E2D45; text-decoration: underline; }
+
+@media (max-width: 992px) {
+    .servicos-grade { grid-template-columns: 1fr; }
+    .servico-destaque { transform: scale(1); }
+}
+</style>

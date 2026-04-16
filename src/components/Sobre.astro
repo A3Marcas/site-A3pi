@@ -1,0 +1,182 @@
+---
+// Sobre.astro - A3 Propriedade Intelectual
+---
+
+<section id="sobre" class="sobre">
+  <div class="container">
+    <div class="sobre-topo">
+      <span class="tag-vinho">Autoridade e Experiência</span>
+      <h2 class="titulo-sobre">Sobre a A3 Propriedade Intelectual</h2>
+      <p class="descricao-sobre">Com anos de experiência no mercado jurídico, a A3 nasceu com a missão de simplificar o complexo processo de registro de marcas no INPI. Protegemos sua identidade visual para que você possa focar no que realmente importa: crescer.</p>
+    </div>
+
+    <div class="socios-grid">
+      <div class="socio-card">
+        <div class="socio-foto">
+          <img 
+            src="/assets/socio1.png" 
+            alt="Sócio Fundador A3" 
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/400x500/2D1B41/FFFFFF?text=A3+Sócio+1'"
+          />
+        </div>
+        <div class="socio-info">
+          <h3>Nome do Sócio 1</h3>
+          <span class="cargo">Sócio Fundador</span>
+          <p>Especialista em Direito da Propriedade Intelectual, focado em estratégias de proteção de marcas para empresas de tecnologia e serviços.</p>
+        </div>
+      </div>
+
+      <div class="socio-card">
+        <div class="socio-foto">
+          <img 
+            src="/assets/socio2.png" 
+            alt="Sócio Diretor A3" 
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/400x500/2D1B41/FFFFFF?text=A3+Sócio+2'"
+          />
+        </div>
+        <div class="socio-info">
+          <h3>Nome do Sócio 2</h3>
+          <span class="cargo">Sócio Diretor</span>
+          <p>Responsável pela gestão de processos e relacionamento institucional junto ao INPI, garantindo agilidade no acompanhamento jurídico.</p>
+        </div>
+      </div>
+
+      <div class="socio-card">
+        <div class="socio-foto">
+          <img 
+            src="/assets/socio3.png" 
+            alt="Sócio Consultor A3" 
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/400x500/2D1B41/FFFFFF?text=A3+Sócio+3'"
+          />
+        </div>
+        <div class="socio-info">
+          <h3>Nome do Sócio 3</h3>
+          <span class="cargo">Sócio Consultor</span>
+          <p>Consultoria estratégica em patentes e direitos autorais, auxiliando na expansão de portfólios de marcas nacionais e internacionais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sobre { 
+    padding: 100px 0; 
+    background: #FFFFFF; 
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .sobre-topo { 
+    text-align: center; 
+    max-width: 850px; 
+    margin: 0 auto 60px; 
+  }
+  
+  .tag-vinho {
+    color: #8E2D45;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .titulo-sobre { 
+    color: #2D1B41; 
+    font-size: clamp(2rem, 5vw, 2.8rem); 
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-family: serif;
+  }
+
+  .descricao-sobre { 
+    font-size: 1.15rem; 
+    line-height: 1.7; 
+    color: #4A4A4A;
+  }
+  
+  .socios-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+  }
+
+  .socio-card { 
+    background: #F9F7FA;
+    border-radius: 12px; 
+    overflow: hidden; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #EEE;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .socio-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 35px rgba(45, 27, 65, 0.1);
+  }
+
+  .socio-foto {
+    background: #2D1B41;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .socio-foto img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-bottom: 5px solid #8E2D45;
+    transition: transform 0.5s ease;
+  }
+
+  .socio-card:hover .socio-foto img {
+    transform: scale(1.05);
+  }
+
+  .socio-info { 
+    padding: 25px; 
+    flex-grow: 1;
+  }
+  
+  .socio-info h3 { 
+    color: #2D1B41; 
+    font-size: 1.5rem; 
+    margin-bottom: 8px; 
+    font-family: serif;
+  }
+  
+  .cargo { 
+    display: block; 
+    color: #8E2D45;
+    font-weight: 700; 
+    font-size: 0.85rem; 
+    text-transform: uppercase; 
+    margin-bottom: 15px; 
+    letter-spacing: 1px;
+  }
+  
+  .socio-info p { 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    color: #555; 
+  }
+
+  @media (max-width: 768px) {
+    .sobre { padding: 60px 0; }
+    .socios-grid { 
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>
