@@ -233,14 +233,31 @@
       form.onsubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(form);
+        
+        // 1. Dispara o envio do Email em segundo plano (Substitua o email abaixo pelo da Gnosis)
+        const emailDeDestino = "atresmarcas@gmail.com"; // <--- ALTERE AQUI
+        
+        fetch(`https://formsubmit.co/ajax/${emailDeDestino}`, {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(Object.fromEntries(formData))
+        }).catch(error => console.log("Erro no envio do email:", error));
+
+        // 2. Prepara e abre o WhatsApp imediatamente
         const texto = `*SOLICITAÇÃO DE AVALIAÇÃO GRATUITA*%0A%0A` +
                       `*Nome:* ${formData.get('nome')}%0A` +
+                      `*E-mail:* ${formData.get('email')}%0A` +
                       `*WhatsApp:* ${formData.get('whatsapp')}%0A` +
                       `*Marca:* ${formData.get('marca')}%0A` +
                       `*CNPJ:* ${formData.get('cnpj')}%0A` +
                       `*Ramo:* ${formData.get('ramo')}`;
         
         window.open(`https://wa.me/5583981436560?text=${texto}`, '_blank');
+        
+        // 3. Fecha o modal e limpa o formulário
         close();
         form.reset();
       };
