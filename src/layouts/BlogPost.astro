@@ -1,0 +1,106 @@
+---
+// Importa o layout base que já tem suas fontes e cabeçalho
+import Layout from './Base.astro';
+
+// Essa linha captura os dados mágicos (Frontmatter) do seu arquivo .md
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={`${frontmatter.title} | A3 Marcas`}>
+  <main class="post-container">
+    
+    <header class="post-header">
+      <a href="/blog" class="back-link">← Voltar para o Blog</a>
+      <h1>{frontmatter.title}</h1>
+      <p class="post-meta">Escrito por <strong>{frontmatter.author}</strong> • {frontmatter.date}</p>
+    </header>
+
+    <article class="post-content">
+      <slot /> 
+    </article>
+
+    <div class="post-cta">
+      <h3>Sua marca está realmente protegida?</h3>
+      <p>A única forma de garantir exclusividade é com o registro no INPI. Nossos especialistas estão prontos para analisar a viabilidade do seu nome sem custo.</p>
+      
+      <button class="btn-primary open-modal-btn">
+            Quero minha avaliação gratuita
+      </button>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .post-container {
+    max-width: 700px;
+    margin: 120px auto 80px;
+    padding: 0 20px;
+    font-family: sans-serif;
+  }
+  
+  .back-link {
+    color: #A6445C;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .post-header h1 {
+    font-size: 2.5rem;
+    color: #2D1B41;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  
+  .post-meta {
+    color: #666;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+
+  /* Estilos para o texto que vem do Markdown */
+  .post-content {
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.1rem;
+  }
+  .post-content h2 {
+    color: #2D1B41;
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+  .post-content p { margin-bottom: 20px; }
+  .post-content ul { margin-bottom: 20px; padding-left: 20px; }
+  .post-content li { margin-bottom: 10px; }
+
+  /* Estilos da caixa de captura no final do texto */
+  .post-cta {
+    background-color: #f9f4f5;
+    border-left: 4px solid #8E2D45;
+    padding: 30px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 50px;
+    text-align: center;
+  }
+  .post-cta h3 { color: #2D1B41; margin-bottom: 10px; }
+  .post-cta p { color: #555; margin-bottom: 20px; }
+  
+  .btn-primary { 
+    background-color: #8E2D45; 
+    color: #FFFFFF !important; 
+    padding: 15px 25px; 
+    border-radius: 8px; 
+    border: none; 
+    font-weight: bold; 
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+    width: 100%;
+  }
+  .btn-primary:hover { background-color: #A6445C; }
+</style>

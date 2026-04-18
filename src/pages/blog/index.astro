@@ -1,0 +1,226 @@
+---
+import Layout from '../../layouts/Base.astro';
+
+// Busca todos os arquivos .md
+const posts = await Astro.glob('./*.md');
+
+// Lista dos sócios/autores para gerar os botões automaticamente
+const autores = ["Liedson Ribeiro", "Pedro Henrique", "Rafael Santos"];
+---
+
+<Layout title="Blog | A3 Marcas">
+  <section class="blog-header">
+    <div class="container">
+      <h1>Nossos Artigos</h1>
+      <p>Informação estratégica e segurança jurídica para o seu negócio.</p>
+    </div>
+  </section>
+
+  <main class="container blog-main">
+    
+    <div class="filtros-autores">
+      <span class="filtro-label">Filtrar por especialista:</span>
+      <div class="botoes-filtro">
+        <button class="btn-filtro ativo" data-autor="todos">Todos</button>
+        {autores.map(autor => (
+          <button class="btn-filtro" data-autor={autor}>{autor}</button>
+        ))}
+      </div>
+    </div>
+
+    <div class="posts-grid" id="grid-artigos">
+      {posts.map((post) => (
+        // O data-autor aqui é vital para o JavaScript saber de quem é o post
+        <article class="post-card" data-autor={post.frontmatter.author}>
+          
+          <div class="card-content">
+            <span class="tag-autor">{post.frontmatter.author}</span>
+            <h2><a href={post.url}>{post.frontmatter.title}</a></h2>
+            <p>{post.frontmatter.description}</p>
+          </div>
+          
+          <div class="card-footer">
+            <small>{post.frontmatter.date}</small>
+            <a href={post.url} class="ler-mais">Ler artigo &rarr;</a>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  /* Cabeçalho do Blog para quebrar o branco total */
+  .blog-header {
+    background-color: #2D1B41;
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 4px solid #8E2D45;
+  }
+  .blog-header h1 { font-family: serif; font-size: 3rem; margin-bottom: 10px; color: white;}
+  .blog-header p { font-size: 1.1rem; opacity: 0.9; }
+
+  .blog-main {
+    margin-top: 40px;
+    margin-bottom: 80px;
+  }
+
+  /* Área de Filtros */
+  .filtros-autores {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .filtro-label {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  .botoes-filtro {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-filtro {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 30px;
+    color: #555;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  .btn-filtro:hover {
+    border-color: #8E2D45;
+    color: #8E2D45;
+  }
+  .btn-filtro.ativo {
+    background: #8E2D45;
+    border-color: #8E2D45;
+    color: white;
+  }
+
+  /* Grid de Cartões Moderno */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  .post-card {
+    background: white;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  }
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+    border-color: #d1d1d1;
+  }
+
+  /* Etiqueta do Autor (Badge) */
+  .tag-autor {
+    display: inline-block;
+    background: #f0e6e8;
+    color: #8E2D45;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+
+  .card-content h2 { margin-bottom: 12px; font-size: 1.4rem; line-height: 1.3;}
+  .card-content h2 a { color: #2D1B41; text-decoration: none; transition: color 0.2s;}
+  .card-content h2 a:hover { color: #8E2D45; }
+  .card-content p { color: #666; line-height: 1.5; font-size: 0.95rem; margin-bottom: 20px;}
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: auto;
+  }
+  .card-footer small { color: #999; font-size: 0.85rem;}
+  .ler-mais {
+    color: #8E2D45;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .ler-mais:hover { text-decoration: underline; }
+
+  /* Classe para esconder os posts no filtro */
+  .escondido { display: none !important; }
+</style>
+
+<script>
+  const setupFiltros = () => {
+    const botoes = document.querySelectorAll('.btn-filtro');
+    const posts = document.querySelectorAll('.post-card');
+
+    if (botoes.length === 0) return;
+
+    // Função que executa a filtragem
+    const filtrar = (autorSelecionado) => {
+      // Atualiza os botões visualmente
+      botoes.forEach(b => {
+        if (b.getAttribute('data-autor') === autorSelecionado) {
+          b.classList.add('ativo');
+        } else {
+          b.classList.remove('ativo');
+        }
+      });
+
+      // Filtra os posts
+      posts.forEach(post => {
+        const autorDoPost = post.getAttribute('data-autor');
+        if (autorSelecionado === 'todos' || autorDoPost === autorSelecionado) {
+          post.classList.remove('escondido');
+        } else {
+          post.classList.add('escondido');
+        }
+      });
+    };
+
+    // Ouvinte de clique para os botões manuais
+    botoes.forEach(botao => {
+      botao.addEventListener('click', () => {
+        const autor = botao.getAttribute('data-autor');
+        filtrar(autor);
+      });
+    });
+
+    // --- LÓGICA DE REDIRECIONAMENTO ---
+    // Verifica se há um autor na URL (ex: ?autor=Liedson+Ribeiro)
+    const urlParams = new URLSearchParams(window.location.search);
+    const autorNaUrl = urlParams.get('autor');
+
+    if (autorNaUrl) {
+      // Pequeno delay para garantir que o DOM está pronto e o efeito visual apareça
+      setTimeout(() => filtrar(autorNaUrl), 100);
+    }
+  };
+
+  setupFiltros();
+  // Mantém funcionando mesmo com transições de página do Astro
+  document.addEventListener('astro:after-swap', setupFiltros);
+</script>

@@ -1,6 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import ModalCaptura from '../components/ModalCaptura.astro';
 const { titulo, descricao } = Astro.props;
 ---
 <!doctype html>
@@ -11,5 +12,27 @@ const { titulo, descricao } = Astro.props;
 	<body>
 		<slot />
 		<Footer />
+		<ModalCaptura />
 	</body>
 </html>
+
+<style is:global>
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: background-color: #F8F9FA; 
+  }
+
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+
+  /* NOVA REGRA: O alinhamento universal do site */
+  .container {
+    width: 100%;
+    max-width: 1100px; /* Segura o site para não esticar demais em monitores ultrawide */
+    margin: 0 auto;    /* Centraliza tudo na tela */
+    padding: 0 24px;   /* O respiro mágico nas laterais! */
+  }
+</style>

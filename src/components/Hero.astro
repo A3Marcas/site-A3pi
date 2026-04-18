@@ -9,59 +9,14 @@
     <p class="hero-description">Registramos sua marca no INPI com análise de viabilidade gratuita e acompanhamento total por especialistas.</p>
     
     <div class="cta-group">
-      <button id="openModalBtn" class="btn-primary">
-        Quero uma avaliação gratuita da minha marca
-      </button>
+      <button class="btn-primary open-modal-btn">
+          Quero minha avaliação gratuita
+      </button> 
       <a href="#servicos" class="btn-secondary">Nossos Serviços</a>
     </div>
   </div>
 
-  <div id="leadModal" class="modal-overlay">
-    <div class="modal-content">
-      <button type="button" class="close-btn" id="closeModalBtn">&times;</button>
-      
-      <div class="modal-header">
-        <h2>Avaliação de Viabilidade</h2>
-        <p>Preencha os campos abaixo para que nossos especialistas realizem a busca oficial no INPI.</p>
-      </div>
-      
-      <form id="viabilityForm">
-        <div class="form-group">
-          <label>Nome Completo</label>
-          <input type="text" name="nome" placeholder="Seu nome" required />
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>E-mail</label>
-            <input type="email" name="email" placeholder="seu@email.com" required />
-          </div>
-          <div class="form-group">
-            <label>WhatsApp</label>
-            <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Nome da Marca</label>
-          <input type="text" name="marca" placeholder="Nome da marca a proteger" required />
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>CNPJ</label>
-            <input type="text" name="cnpj" placeholder="00.000.000/0000-00" />
-          </div>
-          <div class="form-group">
-            <label>Ramo de Atuação</label>
-            <input type="text" name="ramo" placeholder="Ex: Moda, Alimentação..." required />
-          </div>
-        </div>
-
-        <button type="submit" class="btn-submit">Solicitar via WhatsApp</button>
-      </form>
-    </div>
-  </div>
+  
 </section>
 
 <style>
@@ -207,63 +162,4 @@
   }
 </style>
 
-<script>
-  const setupModal = () => {
-    const modal = document.getElementById('leadModal');
-    const openBtn = document.getElementById('openModalBtn');
-    const closeBtn = document.getElementById('closeModalBtn');
-    const form = document.getElementById('viabilityForm') as HTMLFormElement;
-
-    if (!modal || !openBtn || !closeBtn) return;
-
-    openBtn.onclick = () => {
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    };
-
-    const close = () => {
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    };
-
-    closeBtn.onclick = close;
-    window.onclick = (e) => { if (e.target === modal) close(); };
-
-    if (form) {
-      form.onsubmit = (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        
-        // 1. Dispara o envio do Email em segundo plano (Substitua o email abaixo pelo da Gnosis)
-        const emailDeDestino = "atresmarcas@gmail.com"; // <--- ALTERE AQUI
-        
-        fetch(`https://formsubmit.co/ajax/${emailDeDestino}`, {
-            method: "POST",
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(Object.fromEntries(formData))
-        }).catch(error => console.log("Erro no envio do email:", error));
-
-        // 2. Prepara e abre o WhatsApp imediatamente
-        const texto = `*SOLICITAÇÃO DE AVALIAÇÃO GRATUITA*%0A%0A` +
-                      `*Nome:* ${formData.get('nome')}%0A` +
-                      `*E-mail:* ${formData.get('email')}%0A` +
-                      `*WhatsApp:* ${formData.get('whatsapp')}%0A` +
-                      `*Marca:* ${formData.get('marca')}%0A` +
-                      `*CNPJ:* ${formData.get('cnpj')}%0A` +
-                      `*Ramo:* ${formData.get('ramo')}`;
-        
-        window.open(`https://wa.me/5583981436560?text=${texto}`, '_blank');
-        
-        // 3. Fecha o modal e limpa o formulário
-        close();
-        form.reset();
-      };
-    }
-  };
-
-  setupModal();
-  document.addEventListener('astro:after-swap', setupModal);
 </script>

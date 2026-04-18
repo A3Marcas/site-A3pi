@@ -1,10 +1,12 @@
 ---
 // src/components/Header.astro
 const nav = [
-  { href: '#como-funciona', label: 'Como funciona' },
-  { href: '#servicos',      label: 'Serviços'      },
-  { href: '#sobre',         label: 'Quem somos'    },
-  { href: '#faq',           label: 'FAQ'           },
+  // A barra (/) no início garante que o link sempre volte para a Home, de qualquer página!
+  { href: '/#como-funciona', label: 'Como funciona' },
+  { href: '/#servicos',      label: 'Serviços'      },
+  { href: '/#sobre',         label: 'Quem somos'    },
+  { href: '/#faq',           label: 'FAQ'           },
+  { href: '/blog',           label: 'Blog'          }, // O link do seu novo blog!
 ];
 
 // Configuração do WhatsApp para o botão do cabeçalho
@@ -117,7 +119,47 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
 .btn-primario:hover { background-color: #A63D56 !important; }
 
-/* Mobile */
+/* Mobile Menu Base */
 .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: none; border: none; cursor: pointer; }
-.hamburger span { display: block; width: 100%; height: 2px; background: #FFFFFF; border-radius: 2px; }
-.nav-mobile { display: none; flex-direction: column; gap: 4px; padding: 16px 24px 20px; border-top: 1px solid rgba(
+.hamburger span { display: block; width: 100%; height: 2px; background: #FFFFFF; border-radius: 2px; transition: 0.3s; }
+.nav-mobile { display: none; flex-direction: column; gap: 10px; padding: 16px 24px 20px; border-top: 1px solid rgba(255,255,255,0.1); background: #2D1B41; }
+.nav-mobile-link { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+/* Ativação do Menu Mobile */
+.nav-mobile.active { display: flex; }
+.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .nav-desktop, .btn-header { display: none; }
+  .hamburger { display: flex; }
+}
+</style>
+
+<script>
+  // Lógica para abrir e fechar o menu no celular
+  const setupMobileMenu = () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+    const mobileLinks = document.querySelectorAll('.nav-mobile-link');
+
+    if (!hamburger || !navMobile) return;
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMobile.classList.toggle('active');
+    });
+
+    // Fecha o menu automaticamente quando um link é clicado
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMobile.classList.remove('active');
+      });
+    });
+  };
+
+  setupMobileMenu();
+  document.addEventListener('astro:after-swap', setupMobileMenu);
+</script>
