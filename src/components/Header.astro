@@ -9,10 +9,7 @@ const nav = [
   { href: '/blog',           label: 'Blog'          }, // O link do seu novo blog!
 ];
 
-// Configuração do WhatsApp para o botão do cabeçalho
-const whatsappNumber = "5583981436560"; 
-const whatsappMessage = encodeURIComponent("Olá! Gostaria de falar com um especialista sobre registro de marca.");
-const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+// O link do WhatsApp foi removido do JS pois o botão agora abre o Modal
 ---
 
 <header class="header" id="header">
@@ -35,7 +32,7 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     </nav>
 
     <div class="header-actions">
-      <a href={whatsappLink} target="_blank" class="btn btn-primario btn-header">Falar com especialista</a>
+      <button class="btn btn-primario btn-header open-modal-btn">Falar com especialista</button>
       <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -46,9 +43,9 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     {nav.map(item => (
       <a href={item.href} class="nav-mobile-link">{item.label}</a>
     ))}
-    <a href={whatsappLink} target="_blank" class="btn btn-primario" style="margin-top:8px;text-align:center">
+    <button class="btn btn-primario open-modal-btn" style="margin-top:8px;text-align:center; width: 100%;">
       Falar com especialista
-    </a>
+    </button>
   </nav>
 </header>
 
@@ -57,7 +54,7 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #001e13; /* Roxo Profundo */
+  background: #001e13; /* Verde Profundo */
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.1);
   transition: all 0.3s ease;
@@ -78,20 +75,20 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   font-weight: 500;
 }
 
-/* Logo Estilizada */
+/* Logo Estilizada - Paleta Atualizada */
 .logo-provisional { display: flex; align-items: center; gap: 10px; }
 .logo-a3 {
   font-family: serif;
   font-size: 2rem;
   font-weight: 700;
   color: #FFFFFF !important;
-  border-right: 2px solid #8E2D45; /* Linha Vinho */
+  border-right: 2px solid #A9D1C0; /* Linha de divisão agora é Menta */
   padding-right: 10px;
   line-height: 1;
 }
 .logo-texto { display: flex; flex-direction: column; line-height: 1.1; }
 .logo-linha1 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
-.logo-linha2 { font-size: 0.78rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: #A39BB0; }
+.logo-linha2 { font-size: 0.78rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: #406962; } /* Verde Acinzentado */
 
 /* Menu Desktop */
 .nav-desktop { display: flex; align-items: center; gap: 4px; }
@@ -101,23 +98,27 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   font-size: 0.9rem;
   transition: all 0.2s;
 }
-.nav-link:hover { background: rgba(255,255,255,0.1); }
+.nav-link:hover { background: rgba(169, 209, 192, 0.1); color: #A9D1C0 !important; } /* Efeito de hover em Menta */
 
 .header-actions { display: flex; align-items: center; gap: 12px; }
 
-/* Botão em Vinho Marsala */
+/* Botão em Menta Claro */
 .btn-primario {
-  background-color: #8E2D45 !important;
-  color: #FFFFFF !important;
+  background-color: #A9D1C0 !important; /* Cor de conversão */
+  color: #000908 !important; /* Texto Quase Preto para contraste */
   border: none !important;
   padding: 10px 22px;
   border-radius: 6px;
   font-weight: 600;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
   display: inline-block;
+  cursor: pointer;
 }
 
-.btn-primario:hover { background-color: #001e13 !important; }
+.btn-primario:hover { 
+  background-color: #FFFFFF !important; 
+  transform: translateY(-2px);
+}
 
 /* Mobile Menu Base */
 .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: none; border: none; cursor: pointer; }
@@ -143,6 +144,8 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     const hamburger = document.getElementById('hamburger');
     const navMobile = document.getElementById('nav-mobile');
     const mobileLinks = document.querySelectorAll('.nav-mobile-link');
+    // Adicionado os botões do modal para fecharem o menu mobile ao serem clicados
+    const modalBtns = document.querySelectorAll('.nav-mobile .open-modal-btn'); 
 
     if (!hamburger || !navMobile) return;
 
@@ -151,12 +154,20 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
       navMobile.classList.toggle('active');
     });
 
-    // Fecha o menu automaticamente quando um link é clicado
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
+    // Função auxiliar para fechar o menu
+    const closeMenu = () => {
         hamburger.classList.remove('active');
         navMobile.classList.remove('active');
-      });
+    };
+
+    // Fecha o menu automaticamente quando um link é clicado
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Fecha o menu quando o botão de especialista é clicado
+    modalBtns.forEach(btn => {
+        btn.addEventListener('click', closeMenu);
     });
   };
 
