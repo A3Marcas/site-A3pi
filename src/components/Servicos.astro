@@ -93,7 +93,7 @@ const servicos = [
 .cabecalho { margin-bottom: 56px; text-align: center; }
 
 .tag-menta {
-    color: #406962; /* Verde Acinzentado */
+    color: #406962;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -105,24 +105,25 @@ const servicos = [
 .divisor-verde { 
     width: 60px; 
     height: 3px; 
-    background: #032F2E; /* Esmeralda Escuro */
+    background: #032F2E; 
     margin: 16px auto 0; 
 }
 
 .subtitulo-servicos {
     max-width: 520px; 
     margin: 20px auto 0; 
-    color: #001e13; /* Verde Profundo */
+    color: #001e13; 
     font-size: 1.05rem;
 }
 
 .servicos-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; align-items: stretch; position: relative; }
 
+/* Estilos base dos Cards */
 .servico-card {
   display: flex;
   flex-direction: column;
   padding: 40px 30px;
-  background: #F9F9F9; /* Fundo Cinza Claro para os planos base */
+  background: #F9F9F9; 
   border: 1px solid #E2E8F0;
   border-radius: 12px;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -130,45 +131,14 @@ const servicos = [
 
 .servico-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(3, 47, 46, 0.1); }
 
-/* Plano em Destaque */
-.servico-destaque {
-  background: #032F2E; /* Fundo Esmeralda Escuro */
-  border: 2px solid #032F2E;
-  transform: scale(1.03);
-  box-shadow: 0 15px 40px rgba(3, 47, 46, 0.25);
-}
-
-.servico-destaque h3,
-.servico-destaque .servico-itens li {
-    color: #FFFFFF; /* Texto branco no card escuro */
-}
-
-.servico-destaque .servico-desc {
-    color: #A9D1C0 !important; /* Menta para a descrição no card escuro */
-}
-
-.badge-menta {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #A9D1C0; /* Fundo Menta */
-  color: #000908; /* Texto Quase Preto */
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 5px 20px;
-  border-radius: 50px;
-  text-transform: uppercase;
-}
-
 .servico-card h3 { color: #001e13; margin-bottom: 15px; font-size: 1.4rem; font-family: serif; }
 
 .servico-desc { 
     font-size: 0.95rem; 
-    color: #406962 !important; /* Verde Acinzentado */
-    margin-bottom: 30px; /* Aumentado para compensar a ausência do preço */
+    color: #406962 !important; 
+    margin-bottom: 30px; 
     padding-bottom: 25px;
-    border-bottom: 1px solid rgba(169, 209, 192, 0.3); /* Linha divisória suave */
+    border-bottom: 1px solid rgba(169, 209, 192, 0.3); 
     line-height: 1.5;
 }
 
@@ -186,6 +156,44 @@ const servicos = [
   font-size: 0.95rem;
   color: #001e13;
   margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   PLANO EM DESTAQUE (Modificadores para o Card do Meio)
+   ========================================================================== */
+.servico-destaque {
+  background: #032F2E !important; 
+  border: 2px solid #032F2E !important;
+  transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(3, 47, 46, 0.25);
+}
+
+/* Corrigindo o erro do título escuro - Forçando Branco Puro */
+.servico-card.servico-destaque h3 { 
+  color: #FFFFFF !important; 
+}
+
+.servico-destaque .servico-desc {
+  color: #A9D1C0 !important; 
+}
+
+.servico-destaque .servico-itens li {
+  color: #FFFFFF !important; 
+}
+
+/* Badge Superior */
+.badge-menta {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #A9D1C0; 
+  color: #000908; 
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 20px;
+  border-radius: 50px;
+  text-transform: uppercase;
 }
 
 /* Botões Customizados */
