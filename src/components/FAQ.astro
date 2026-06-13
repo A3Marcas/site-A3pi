@@ -1,81 +1,201 @@
-  ---
-  // src/components/FAQ.astro
-  const faqs = [
-    {
-      pergunta: "Por que é fundamental registrar minha marca?",
-      resposta: "No Brasil, a propriedade de uma marca é garantida apenas a quem detém o registro oficial. Sem ele, sua empresa fica vulnerável ao risco de perda do nome comercial, impedimento de uso da própria identidade e a necessidade de reiniciar toda a operação do zero."
-    },
-    {
-      pergunta: "O que o registro efetivamente protege?",
-      resposta: "O registro assegura exclusividade sobre o nome da empresa, o logotipo e a identidade visual da marca em todo o território nacional, impedindo que terceiros utilizem elementos idênticos ou semelhantes que possam causar confusão ao consumidor."
-    },
-    {
-      pergunta: "Já utilizo o nome há tempo. Ainda assim preciso registrar?",
-      resposta: "Sim. O uso prévio, por si só, não confere proteção jurídica plena. Caso outra empresa solicite o registro antes de você, ela terá prioridade legal, o que pode obrigar você a abandonar o uso da marca, mesmo que tenha sido o primeiro a criá-la."
-    },
-    {
-      pergunta: "Quais são os custos e o prazo médio do processo?",
-      resposta: "O investimento é reduzido quando comparado aos prejuízos financeiros de uma perda de marca. O processo tramita perante o Instituto Nacional da Propriedade Industrial (INPI) e leva, em média, de 8 meses a 2 anos até a concessão final."
-    },
-    {
-      pergunta: "Quais são os riscos de não possuir o registro?",
-      resposta: "A ausência de registro deixa o negócio exposto a notificações judiciais e processos por uso indevido. O custo de uma transição forçada — incluindo mudança de fachadas, redes sociais e materiais publicitários — é significativamente superior ao investimento no registro preventivo."
-    },
-    {
-      pergunta: "O registro de marca deve ser considerado um investimento ou uma despesa?",
-      resposta: "Trata-se de um investimento estratégico. O registro valoriza o ativo intangível da empresa, permite a expansão através de franquias ou licenciamentos, transmite profissionalismo ao mercado e evita litígios onerosos no futuro."
-    },
-    {
-      pergunta: "Qual é o prazo de validade da proteção da marca?",
-      resposta: "O registro tem validade de 10 anos, podendo ser renovado sucessivamente por períodos iguais de forma indefinida, garantindo a proteção do seu patrimônio por tempo indeterminado."
-    }
-  ];
-  ---
+---
+// src/components/FAQ.astro
+const faqs = [
+  {
+    pergunta: "Por que é fundamental registrar minha marca?",
+    resposta: "No Brasil, a propriedade de uma marca é garantida apenas a quem detém o registro oficial. Sem ele, sua empresa fica vulnerável ao risco de perda do nome comercial, impedimento de uso da própria identidade e a necessidade de reiniciar toda a operação do zero."
+  },
+  {
+    pergunta: "O que o registro efetivamente protege?",
+    resposta: "O registro assegura exclusividade sobre o nome da empresa, o logotipo e a identidade visual da marca em todo o território nacional, impedindo que terceiros utilizem elementos idênticos ou semelhantes que possam causar confusão ao consumidor."
+  },
+  {
+    pergunta: "Já utilizo o nome há tempo. Ainda assim preciso registrar?",
+    resposta: "Sim. O uso prévio, por si só, não confere proteção jurídica plena. Caso outra empresa solicite o registro antes de você, ela terá prioridade legal, o que pode obrigar você a abandonar o uso da marca, mesmo que tenha sido o primeiro a criá-la."
+  },
+  {
+    pergunta: "Quais são os custos e o prazo médio do processo?",
+    resposta: "O investimento é reduzido quando comparado aos prejuízos financeiros de uma perda de marca. O processo tramita perante o Instituto Nacional da Propriedade Industrial (INPI) e leva, em média, de 8 meses a 2 anos até a concessão final."
+  },
+  {
+    pergunta: "Quais são os riscos de não possuir o registro?",
+    resposta: "A ausência de registro deixa o negócio exposto a notificações judiciais e processos por uso indevido. O custo de uma transição forçada — incluindo mudança de fachadas, redes sociais e materiais publicitários — é significativamente superior ao investimento no registro preventivo."
+  },
+  {
+    pergunta: "O registro de marca deve ser considerado um investimento ou uma despesa?",
+    resposta: "Trata-se de um investimento estratégico. O registro valoriza o ativo intangível da empresa, permite a expansão através de franquias ou licenciamentos, transmite profissionalismo ao mercado e evita litígios onerosos no futuro."
+  },
+  {
+    pergunta: "Qual é o prazo de validade da proteção da marca?",
+    resposta: "O registro tem validade de 10 anos, podendo ser renovado sucessivamente por períodos iguais de forma indefinida, garantindo a proteção do seu patrimônio por tempo indeterminado."
+  }
+];
+---
 
-  <section id="faq" style="padding: 100px 0; background-color: #FFFFFF; font-family: sans-serif;">
-    <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
-      
-      <div style="text-align: center; margin-bottom: 60px;">
-        <span style="color: #8E2D45; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; display: block; margin-bottom: 10px;">
-          Suas dúvidas respondidas
-        </span>
-        <h2 style="color: #2D1B41; font-size: 42px; margin: 0; font-weight: 800; line-height: 1.2;">
-          Perguntas Frequentes
-        </h2>
-        <div style="width: 60px; height: 3px; background-color: #8E2D45; margin: 20px auto 0;"></div>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 15px;">
-        {faqs.map(item => (
-          <details style="background: #F9F7FA; border-radius: 12px; border: 1px solid #EEE; transition: all 0.3s ease; cursor: pointer;">
-            <summary style="padding: 25px; color: #2D1B41; font-weight: 700; font-size: 18px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-              {item.pergunta}
-              <span style="color: #8E2D45; font-size: 24px;">+</span>
-            </summary>
-            <div style="padding: 0 25px 25px 25px; color: #444444; font-size: 16px; line-height: 1.7; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
-              {item.resposta}
-            </div>
-          </details>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <style>
-    /* Pequeno ajuste para esconder o triângulo padrão do navegador */
-    summary::-webkit-details-marker {
-      display: none;
-    }
+<section id="faq" class="faq-section">
+  <div class="container faq-container">
     
-    details[open] {
-      border-color: #8E2D45 !important;
-      background-color: #FFFFFF !important;
-      box-shadow: 0 10px 30px rgba(45, 27, 65, 0.08);
-    }
+    <div class="cabecalho text-center">
+      <span class="tag-menta">Suas dúvidas respondidas</span>
+      <h2 class="titulo-secao">Perguntas Frequentes</h2>
+      <div class="divisor-verde"></div>
+    </div>
 
-    details[open] summary span {
-      transform: rotate(45deg);
-      color: #2D1B41 !important;
-    }
-  </style>
+    <div class="faq-lista">
+      {faqs.map(item => (
+        <details class="faq-item">
+          <summary class="faq-pergunta">
+            {item.pergunta}
+            <span class="faq-icone">+</span>
+          </summary>
+          <div class="faq-resposta">
+            {item.resposta}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="cta-container">
+      <p class="cta-texto">Ainda tem alguma dúvida específica sobre o seu negócio?</p>
+      <button class="btn-menta-full open-modal-btn">Falar com especialista</button>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: 100px 0;
+    background-color: #FFFFFF;
+  }
+
+  .faq-container {
+    max-width: 900px; /* Mantemos mais estreito para o texto não ficar cansativo de ler */
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .cabecalho {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .tag-menta {
+    color: #406962; /* Verde Acinzentado */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .titulo-secao {
+    color: #000908; /* Quase Preto */
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0;
+  }
+
+  .divisor-verde {
+    width: 60px;
+    height: 3px;
+    background-color: #032F2E; /* Esmeralda Escuro */
+    margin: 20px auto 0;
+  }
+
+  .faq-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .faq-item {
+    background: #F9F9F9;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .faq-pergunta {
+    padding: 25px;
+    color: #001e13; /* Verde Profundo */
+    font-weight: 700;
+    font-size: 1.15rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Esconde a setinha padrão feia dos navegadores antigos */
+  .faq-pergunta::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icone {
+    color: #032F2E;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .faq-resposta {
+    padding: 0 25px 25px 25px;
+    color: #406962; /* Verde Acinzentado */
+    font-size: 1rem;
+    line-height: 1.7;
+    border-top: 1px solid rgba(169, 209, 192, 0.3); /* Linha divisória Menta Suave */
+    margin-top: -5px;
+    padding-top: 20px;
+  }
+
+  /* Efeitos quando a pergunta é aberta */
+  .faq-item[open] {
+    border-color: #032F2E;
+    background-color: #FFFFFF;
+    box-shadow: 0 10px 30px rgba(3, 47, 46, 0.1);
+  }
+
+  .faq-item[open] .faq-icone {
+    transform: rotate(45deg); /* Transforma o + em um X */
+    color: #A9D1C0; /* Fica Menta ao abrir */
+  }
+
+  /* Estilos do CTA de Fechamento */
+  .cta-container {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #E2E8F0;
+  }
+
+  .cta-texto {
+    color: #406962;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+  }
+
+  .btn-menta-full {
+    display: inline-block;
+    background: #A9D1C0;
+    color: #000908;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(169, 209, 192, 0.3);
+  }
+
+  .btn-menta-full:hover {
+    background: #032F2E;
+    color: #FFFFFF;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(3, 47, 46, 0.2);
+  }
+</style>
