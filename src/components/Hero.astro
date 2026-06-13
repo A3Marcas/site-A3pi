@@ -22,8 +22,8 @@
 <style>
   .hero {
     padding: 120px 0;
-    background-color: #2D1B41; 
-    color: #FFFFFF !important; 
+    background-color: #032F2E; /* Verde Esmeralda (Fundo da Seção) */
+    color: #FFFFFF !important; /* Texto claro para contraste */
     text-align: center;
     min-height: 80vh;
     display: flex;
@@ -35,7 +35,7 @@
   .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; z-index: 2; }
   
   .tagline { 
-    color: #A6445C !important; 
+    color: #A9D1C0 !important; /* Menta Claro (A "Sobrancelha") */
     font-weight: bold; 
     text-transform: uppercase; 
     letter-spacing: 2px; 
@@ -47,14 +47,14 @@
     font-size: clamp(2.2rem, 5vw, 3.8rem); 
     margin: 20px 0; 
     font-family: serif; 
-    color: #FFFFFF !important; 
+    color: #FFFFFF !important; /* Branco puro no Título */
     line-height: 1.2;
   }
 
   .hero-description { 
     font-size: 1.25rem; 
     margin-bottom: 45px; 
-    color: #FFFFFF !important; 
+    color: #FFFFFF !important; /* Branco puro na Descrição */
     opacity: 0.9;
     max-width: 800px;
     margin-left: auto;
@@ -65,8 +65,8 @@
   .cta-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
   .btn-primary { 
-    background-color: #8E2D45; 
-    color: #FFFFFF !important; 
+    background-color: #A9D1C0; /* Fundo do botão Menta Claro */
+    color: #000908 !important; /* Texto do botão Quase Preto */
     padding: 20px 35px; 
     border-radius: 8px; 
     border: none; 
@@ -75,20 +75,25 @@
     transition: 0.3s;
     font-size: 1.1rem;
   }
-  .btn-primary:hover { background-color: #A6445C; transform: translateY(-3px); }
+  .btn-primary:hover { 
+    background-color: #FFFFFF; /* Efeito Hover do botão principal */
+    transform: translateY(-3px); 
+  }
 
   .btn-secondary {
-    border: 2px solid #FFFFFF;
-    color: #FFFFFF !important;
+    border: 2px solid #A9D1C0; /* Borda secundária em Menta */
+    color: #A9D1C0 !important; /* Texto do botão secundário em Menta */
     padding: 18px 35px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     transition: 0.3s;
   }
-  .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+  .btn-secondary:hover { 
+    background: rgba(169, 209, 192, 0.1); /* Efeito Hover translúcido usando RGB do Menta */
+  }
 
-  /* MODAL ESTILOS */
+  /* MODAL ESTILOS (Opcional - Modifiquei para harmonizar com a nova paleta) */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -105,7 +110,7 @@
 
   .modal-content {
     background: #FFFFFF;
-    color: #2D1B41;
+    color: #000908; /* Quase preto para textos do modal */
     padding: 40px;
     border-radius: 16px;
     width: 95%;
@@ -122,14 +127,14 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #2D1B41;
+    color: #001E13; /* Verde profundo no fechar do modal */
   }
 
-  .modal-header h2 { color: #2D1B41; font-family: serif; font-size: 2rem; margin-bottom: 10px; }
+  .modal-header h2 { color: #001E13; font-family: serif; font-size: 2rem; margin-bottom: 10px; }
   .modal-header p { color: #666; font-size: 1rem; margin-bottom: 30px; }
 
   .form-group { margin-bottom: 20px; text-align: left; flex: 1; }
-  .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #8E2D45; margin-bottom: 8px; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #032F2E; margin-bottom: 8px; }
   .form-row { display: flex; gap: 20px; }
 
   input {
@@ -143,8 +148,8 @@
 
   .btn-submit {
     width: 100%;
-    background-color: #8E2D45;
-    color: white;
+    background-color: #A9D1C0; /* Botão de Enviar do Modal em Menta */
+    color: #000908; /* Texto interno do botão Quase Preto */
     padding: 18px;
     border: none;
     border-radius: 8px;
@@ -153,7 +158,7 @@
     font-size: 1.1rem;
     transition: 0.3s;
   }
-  .btn-submit:hover { background-color: #2D1B41; }
+  .btn-submit:hover { background-color: #032F2E; color: #FFFFFF; } /* Efeito hover do modal para verde escuro */
 
   @media (max-width: 768px) {
     .form-row { flex-direction: column; gap: 0; }
