@@ -34,14 +34,20 @@ const passos = [
 
     <div class="grid-passos">
       {passos.map(p => (
-        <div class="passo-card">
-          <div class="passo-conteudo">
-            <h3 class="passo-titulo">{p.titulo}</h3>
-            <p class="passo-desc">{p.descricao}</p>
+        <div class="passo-card-wrapper">
+          <div class="passo-card">
+            <div class="passo-conteudo">
+              <h3 class="passo-titulo">{p.titulo}</h3>
+              <p class="passo-desc">{p.descricao}</p>
+            </div>
+            <span class="passo-numero">{p.numero}</span>
           </div>
-          <span class="passo-numero">{p.numero}</span>
         </div>
       ))}
+    </div>
+
+    <div class="cta-container">
+      <a href="#contato" class="btn-menta-full">Quero dar o primeiro passo</a>
     </div>
 
   </div>
@@ -50,7 +56,7 @@ const passos = [
 <style>
   .como-funciona {
     padding: 100px 0;
-    background-color: #FFFFFF; /* Fundo limpo para leitura */
+    background-color: #FFFFFF; 
   }
 
   .container {
@@ -65,7 +71,7 @@ const passos = [
   }
 
   .tag-menta {
-    color: #406962; /* Verde Acinzentado */
+    color: #406962; 
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -75,7 +81,7 @@ const passos = [
   }
 
   .titulo-secao {
-    color: #000908; /* Quase Preto */
+    color: #000908; 
     font-size: clamp(2rem, 5vw, 2.8rem);
     margin: 0;
     font-family: serif;
@@ -83,24 +89,44 @@ const passos = [
 
   .grid-passos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* PONTO 3: Força a criação de 4 colunas no desktop para a linha do tempo */
+    grid-template-columns: repeat(4, 1fr); 
     gap: 25px;
   }
 
+  /* O wrapper serve para não deixarmos a seta ser cortada pelo overflow do card */
+  .passo-card-wrapper {
+    position: relative;
+  }
+
+  /* A Seta conectora (Aparece apenas em telas de Computador/Tablet grande) */
+  @media (min-width: 992px) {
+    .passo-card-wrapper:not(:last-child)::after {
+      content: '➔';
+      position: absolute;
+      right: -20px; /* Joga a seta para fora do card, em direção ao próximo */
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: #A9D1C0; /* Cor Menta */
+      z-index: 5;
+    }
+  }
+
   .passo-card {
-    background: #F9F9F9; /* Fundo leve para destacar do fundo branco do site */
+    background: #F9F9F9; 
     padding: 40px 25px;
     border-radius: 12px;
     border: 1px solid #E2E8F0;
     position: relative;
     overflow: hidden;
-    min-height: 220px;
+    height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .passo-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(3, 47, 46, 0.1); /* Sombra Esmeralda suave */
+    box-shadow: 0 10px 30px rgba(3, 47, 46, 0.1); 
   }
 
   .passo-conteudo {
@@ -109,14 +135,14 @@ const passos = [
   }
 
   .passo-titulo {
-    color: #001e13; /* Verde Profundo */
+    color: #001e13; 
     font-size: 1.4rem;
     margin-bottom: 15px;
     font-family: serif;
   }
 
   .passo-desc {
-    color: #406962; /* Verde Acinzentado para leitura contínua */
+    color: #406962; 
     font-size: 1rem;
     line-height: 1.6;
     margin: 0;
@@ -128,9 +154,43 @@ const passos = [
     right: 15px;
     font-size: 5rem;
     font-weight: 900;
-    color: rgba(169, 209, 192, 0.25); /* Menta com transparência agindo como marca d'água */
+    color: rgba(169, 209, 192, 0.25); 
     z-index: 1;
     line-height: 1;
     user-select: none;
+  }
+
+  /* Estilos do Botão de Conversão */
+  .cta-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .btn-menta-full { 
+    display: inline-block;
+    background: #A9D1C0; 
+    color: #000908; 
+    border: none; 
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(169, 209, 192, 0.3);
+  }
+  
+  .btn-menta-full:hover { 
+    background: #032F2E; 
+    color: #FFFFFF; 
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(3, 47, 46, 0.2);
+  }
+
+  /* Responsividade: Volta para o comportamento empilhado em celulares */
+  @media (max-width: 991px) {
+    .grid-passos {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
   }
 </style>
