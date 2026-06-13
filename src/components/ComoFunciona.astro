@@ -47,7 +47,7 @@ const passos = [
     </div>
 
     <div class="cta-container">
-      <a href="#contato" class="btn-menta-full">Quero dar o primeiro passo</a>
+      <button class="btn-menta-full open-modal-btn">Quero dar o primeiro passo</button>
     </div>
 
   </div>
@@ -89,27 +89,31 @@ const passos = [
 
   .grid-passos {
     display: grid;
-    /* PONTO 3: Força a criação de 4 colunas no desktop para a linha do tempo */
     grid-template-columns: repeat(4, 1fr); 
-    gap: 25px;
+    gap: 25px; /* Espaço de 25px entre os cards */
   }
 
-  /* O wrapper serve para não deixarmos a seta ser cortada pelo overflow do card */
   .passo-card-wrapper {
     position: relative;
   }
 
-  /* A Seta conectora (Aparece apenas em telas de Computador/Tablet grande) */
+  /* Engenharia das Setas Conectoras Ampliadas */
   @media (min-width: 992px) {
     .passo-card-wrapper:not(:last-child)::after {
       content: '➔';
       position: absolute;
-      right: -20px; /* Joga a seta para fora do card, em direção ao próximo */
+      right: -25px; /* Alinha exatamente no início do espaço do gap */
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.5rem;
-      color: #A9D1C0; /* Cor Menta */
+      width: 25px; /* Ocupa a largura total do gap para centralizar perfeitamente */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem; /* Tamanho ampliado significativamente */
+      color: #A9D1C0; 
       z-index: 5;
+      opacity: 0.8;
+      user-select: none;
     }
   }
 
@@ -160,12 +164,12 @@ const passos = [
     user-select: none;
   }
 
-  /* Estilos do Botão de Conversão */
   .cta-container {
     text-align: center;
     margin-top: 50px;
   }
 
+  /* Estilização ajustada para tag de botão */
   .btn-menta-full { 
     display: inline-block;
     background: #A9D1C0; 
@@ -175,7 +179,7 @@ const passos = [
     border-radius: 8px;
     font-weight: 700;
     font-size: 1.1rem;
-    text-decoration: none;
+    cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(169, 209, 192, 0.3);
   }
@@ -187,7 +191,6 @@ const passos = [
     box-shadow: 0 8px 25px rgba(3, 47, 46, 0.2);
   }
 
-  /* Responsividade: Volta para o comportamento empilhado em celulares */
   @media (max-width: 991px) {
     .grid-passos {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
