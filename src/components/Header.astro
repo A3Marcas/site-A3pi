@@ -1,28 +1,20 @@
 ---
 // src/components/Header.astro
 const nav = [
-  // A barra (/) no início garante que o link sempre volte para a Home, de qualquer página!
+  // A barra (/) no início garante que a hiperligação volte sempre à página principal!
   { href: '/#como-funciona', label: 'Como funciona' },
   { href: '/#servicos',      label: 'Serviços'      },
   { href: '/#sobre',         label: 'Quem somos'    },
   { href: '/#faq',           label: 'FAQ'           },
-  { href: '/blog',           label: 'Blog'          }, // O link do seu novo blog!
+  { href: '/blog',           label: 'Blog'          }, 
 ];
-
-// O link do WhatsApp foi removido do JS pois o botão agora abre o Modal
 ---
 
 <header class="header" id="header">
   <div class="container header-inner">
 
     <a href="/" class="logo" aria-label="A3 Propriedade Intelectual — voltar ao início">
-      <div class="logo-provisional">
-        <span class="logo-a3">A3</span>
-        <div class="logo-texto">
-          <span class="logo-linha1">Propriedade</span>
-          <span class="logo-linha2">Intelectual</span>
-        </div>
-      </div>
+      <img src="/assets/logo-a3.png" alt="A3 Propriedade Intelectual" class="img-logo" />
     </a>
 
     <nav class="nav-desktop" aria-label="Navegação principal">
@@ -68,27 +60,29 @@ const nav = [
   gap: 24px;
 }
 
-/* Forçando cor branca nos links */
-.header-inner a, .nav-mobile-link {
+/* Forçando cor branca nas hiperligações */
+.header-inner a:not(.logo), .nav-mobile-link {
   color: #FFFFFF !important;
   text-decoration: none;
   font-weight: 500;
 }
 
-/* Logo Estilizada - Paleta Atualizada */
-.logo-provisional { display: flex; align-items: center; gap: 10px; }
-.logo-a3 {
-  font-family: serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #FFFFFF !important;
-  border-right: 2px solid #A9D1C0; /* Linha de divisão agora é Menta */
-  padding-right: 10px;
-  line-height: 1;
+/* Estilização do Logótipo em Imagem */
+.logo {
+  display: flex;
+  align-items: center;
 }
-.logo-texto { display: flex; flex-direction: column; line-height: 1.1; }
-.logo-linha1 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
-.logo-linha2 { font-size: 0.78rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: #406962; } /* Verde Acinzentado */
+
+.img-logo {
+  height: 42px; /* Altura ideal para o cabeçalho de 72px */
+  width: auto;  /* Mantém a proporção da imagem */
+  object-fit: contain;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover .img-logo {
+  opacity: 0.85; /* Efeito de clique visual nítido */
+}
 
 /* Menu Desktop */
 .nav-desktop { display: flex; align-items: center; gap: 4px; }
@@ -98,7 +92,7 @@ const nav = [
   font-size: 0.9rem;
   transition: all 0.2s;
 }
-.nav-link:hover { background: rgba(169, 209, 192, 0.1); color: #A9D1C0 !important; } /* Efeito de hover em Menta */
+.nav-link:hover { background: rgba(169, 209, 192, 0.1); color: #A9D1C0 !important; }
 
 .header-actions { display: flex; align-items: center; gap: 12px; }
 
@@ -135,16 +129,16 @@ const nav = [
 @media (max-width: 768px) {
   .nav-desktop, .btn-header { display: none; }
   .hamburger { display: flex; }
+  .img-logo { height: 36px; } /* Logótipo ligeiramente menor em telemóveis */
 }
 </style>
 
 <script>
-  // Lógica para abrir e fechar o menu no celular
+  // Lógica para abrir e fechar o menu no telemóvel
   const setupMobileMenu = () => {
     const hamburger = document.getElementById('hamburger');
     const navMobile = document.getElementById('nav-mobile');
     const mobileLinks = document.querySelectorAll('.nav-mobile-link');
-    // Adicionado os botões do modal para fecharem o menu mobile ao serem clicados
     const modalBtns = document.querySelectorAll('.nav-mobile .open-modal-btn'); 
 
     if (!hamburger || !navMobile) return;
@@ -154,18 +148,15 @@ const nav = [
       navMobile.classList.toggle('active');
     });
 
-    // Função auxiliar para fechar o menu
     const closeMenu = () => {
         hamburger.classList.remove('active');
         navMobile.classList.remove('active');
     };
 
-    // Fecha o menu automaticamente quando um link é clicado
     mobileLinks.forEach(link => {
       link.addEventListener('click', closeMenu);
     });
 
-    // Fecha o menu quando o botão de especialista é clicado
     modalBtns.forEach(btn => {
         btn.addEventListener('click', closeMenu);
     });
