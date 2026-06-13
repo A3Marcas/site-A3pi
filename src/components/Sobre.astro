@@ -5,7 +5,7 @@
 <section id="sobre" class="sobre">
   <div class="container">
     <div class="sobre-topo">
-      <span class="tag-vinho">Autoridade e Experiência</span>
+      <span class="tag-menta">Autoridade e Experiência</span>
       <h2 class="titulo-sobre">Sobre a A3 Propriedade Intelectual</h2>
       <p class="descricao-sobre">Com anos de experiência no mercado jurídico, a A3 nasceu com a missão de simplificar o complexo processo de registro de marcas no INPI. Protegemos sua identidade visual para que você possa focar no que realmente importa: crescer.</p>
     </div>
@@ -17,16 +17,14 @@
             src="/assets/socio1.png" 
             alt="Sócio Fundador A3" 
             loading="lazy"
-            onerror="this.onerror=null;this.src='https://placehold.co/400x500/2D1B41/FFFFFF?text=A3+Sócio+1'"
+            onerror="this.onerror=null;this.src='https://placehold.co/400x500/032F2E/FFFFFF?text=A3+Sócio+1'"
           />
         </div>
         <div class="socio-info">
           <h3>Liedson Ribeiro</h3>
           <span class="cargo">Sócio Fundador</span>
           <p>Especialista em Direito da Propriedade Intelectual, focado em estratégias de proteção de marcas para empresas de tecnologia e serviços.</p>
-          <a href="/blog?autor=Liedson+Ribeiro" class="btn-artigos">
-    Ver artigos
-  </a>
+          <a href="/blog?autor=Liedson+Ribeiro" class="btn-artigos">Ver artigos</a>
         </div>
       </div>
 
@@ -36,14 +34,14 @@
             src="/assets/socio2.png" 
             alt="Sócio Diretor A3" 
             loading="lazy"
-            onerror="this.onerror=null;this.src='https://placehold.co/400x500/2D1B41/FFFFFF?text=A3+Sócio+2'"
+            onerror="this.onerror=null;this.src='https://placehold.co/400x500/032F2E/FFFFFF?text=A3+Sócio+2'"
           />
         </div>
         <div class="socio-info">
           <h3>Pedro Henrique</h3>
           <span class="cargo">Sócio Diretor</span>
           <p>Responsável pela gestão de processos e relacionamento institucional junto ao INPI, garantindo agilidade no acompanhamento jurídico.</p>
-            <a href="/blog?autor=Pedro+Henrique" class="btn-artigos"> Ver artigos</a>
+            <a href="/blog?autor=Pedro+Henrique" class="btn-artigos">Ver artigos</a>
         </div>
       </div>
 
@@ -53,16 +51,14 @@
             src="/assets/socio3.png" 
             alt="Sócio Consultor A3" 
             loading="lazy"
-            onerror="this.onerror=null;this.src='https://placehold.co/400x500/2D1B41/FFFFFF?text=A3+Sócio+3'"
+            onerror="this.onerror=null;this.src='https://placehold.co/400x500/032F2E/FFFFFF?text=A3+Sócio+3'"
           />
         </div>
         <div class="socio-info">
           <h3>Rafael Santos</h3>
           <span class="cargo">Sócio Consultor</span>
           <p>Consultoria estratégica em patentes e direitos autorais, auxiliando na expansão de portfólios de marcas nacionais e internacionais.</p>
-          <a href="/blog?autor=Rafael+Santos" class="btn-artigos">
-            Ver artigos
-          </a>
+          <a href="/blog?autor=Rafael+Santos" class="btn-artigos">Ver artigos</a>
         </div>
       </div>
     </div>
@@ -72,7 +68,7 @@
 <style>
   .sobre { 
     padding: 100px 0; 
-    background: #FFFFFF; 
+    background: #FFFFFF; /* Mantemos o fundo branco para descanso visual */
   }
   
   .container {
@@ -87,8 +83,8 @@
     margin: 0 auto 60px; 
   }
   
-  .tag-vinho {
-    color: #8E2D45;
+  .tag-menta {
+    color: #406962; /* Verde acinzentado para leitura suave */
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -98,7 +94,7 @@
   }
 
   .titulo-sobre { 
-    color: #2D1B41; 
+    color: #000908; /* Quase preto para alto contraste */
     font-size: clamp(2rem, 5vw, 2.8rem); 
     margin-bottom: 20px;
     line-height: 1.2;
@@ -108,7 +104,7 @@
   .descricao-sobre { 
     font-size: 1.15rem; 
     line-height: 1.7; 
-    color: #4A4A4A;
+    color: #001e13; /* Verde Profundo para o parágrafo */
   }
   
   .socios-grid { 
@@ -118,22 +114,22 @@
   }
 
   .socio-card { 
-    background: #F9F7FA;
+    background: #F9F9F9; /* Fundo levemente cinza para destacar o card */
     border-radius: 12px; 
     overflow: hidden; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #EEE;
+    border: 1px solid #E0E0E0;
     display: flex;
     flex-direction: column;
   }
 
   .socio-card:hover { 
     transform: translateY(-10px); 
-    box-shadow: 0 15px 35px rgba(45, 27, 65, 0.1);
+    box-shadow: 0 15px 35px rgba(3, 47, 46, 0.15); /* Sombra Esmeralda suave */
   }
 
   .socio-foto {
-    background: #2D1B41;
+    background: #032F2E; /* Verde Esmeralda como fundo se a foto demorar a carregar */
     height: 400px;
     overflow: hidden;
   }
@@ -142,7 +138,7 @@
     width: 100%; 
     height: 100%; 
     object-fit: cover; 
-    border-bottom: 5px solid #8E2D45;
+    border-bottom: 5px solid #A9D1C0; /* Linha de destaque em Menta */
     transition: transform 0.5s ease;
   }
 
@@ -153,10 +149,12 @@
   .socio-info { 
     padding: 25px; 
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
   
   .socio-info h3 { 
-    color: #2D1B41; 
+    color: #001e13; /* Verde Profundo nos nomes */
     font-size: 1.5rem; 
     margin-bottom: 8px; 
     font-family: serif;
@@ -164,7 +162,7 @@
   
   .cargo { 
     display: block; 
-    color: #8E2D45;
+    color: #406962; /* Verde acinzentado */
     font-weight: 700; 
     font-size: 0.85rem; 
     text-transform: uppercase; 
@@ -175,7 +173,27 @@
   .socio-info p { 
     font-size: 0.95rem; 
     line-height: 1.6; 
-    color: #555; 
+    color: #000908; /* Quase Preto */
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .btn-artigos {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #A9D1C0; /* Botão em Menta */
+    color: #000908; /* Texto interno Quase Preto */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+  }
+
+  .btn-artigos:hover {
+    background-color: #032F2E; /* Esmeralda no Hover */
+    color: #FFFFFF;
   }
 
   @media (max-width: 768px) {
