@@ -45,58 +45,63 @@
 </style>
 
 <script>
-  const setupModal = () => {
-    const modal = document.getElementById('leadModal');
-    const closeBtn = document.getElementById('closeModalBtn');
-    const form = document.getElementById('viabilityForm') as HTMLFormElement;
-    
-    // A MÁGICA: Agora ele busca TODOS os botões do site que tenham essa classe
-    const openBtns = document.querySelectorAll('.open-modal-btn');
+  const modal = document.getElementById('leadModal');
+  const form = document.getElementById('viabilityForm') as HTMLFormElement;
 
-    if (!modal || !closeBtn) return;
-
-    openBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    const close = () => { modal.style.display = 'none'; document.body.style.overflow = 'auto'; };
-    closeBtn.onclick = close;
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            close();
-        }
-    });
-
-    if (form) {
-      form.onsubmit = (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const emailDeDestino = "contato@a3pi.com.br"; // <--- LEMBRE DE ALTERAR AQUI NOVAMENTE
-        
-        fetch(`https://formsubmit.co/ajax/${emailDeDestino}`, {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(formData))
-        }).catch(error => console.log("Erro no envio do email:", error));
-
-        const texto = `*SOLICITAÇÃO DE AVALIAÇÃO GRATUITA*%0A%0A` +
-                      `*Nome:* ${formData.get('nome')}%0A` +
-                      `*E-mail:* ${formData.get('email')}%0A` +
-                      `*WhatsApp:* ${formData.get('whatsapp')}%0A` +
-                      `*Marca:* ${formData.get('marca')}%0A` +
-                      `*CNPJ:* ${formData.get('cnpj')}%0A` +
-                      `*Ramo:* ${formData.get('ramo')}`;
-        
-        window.open(`https://wa.me/5583981436560?text=${texto}`, '_blank');
-        close();
-        form.reset();
-      };
+  const openModal = () => {
+    if (modal) {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     }
   };
 
-  setupModal();
-  document.addEventListener('astro:after-swap', setupModal);
+  const closeModal = () => {
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  };
+
+  // A TÉCNICA À PROVA DE BALAS: Delegação de Eventos Global
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+
+    // 1. Se clicou em um botão de abrir o modal (ou no ícone dentro dele)
+    if (target.closest('.open-modal-btn')) {
+      e.preventDefault(); // Evita que a página pule para o topo
+      openModal();
+    }
+    
+    // 2. Se clicou no fundo escuro do modal OU no botão de fechar (X)
+    else if (target === modal || target.closest('#closeModalBtn')) {
+      closeModal();
+    }
+  });
+
+  // Lógica de Envio do Formulário (Intacta)
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const emailDeDestino = "contato@a3pi.com.br"; // <-- Seu e-mail oficial
+      
+      fetch(`https://formsubmit.co/ajax/${emailDeDestino}`, {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(formData))
+      }).catch(error => console.log("Erro no envio do email:", error));
+
+      const texto = `*SOLICITAÇÃO DE AVALIAÇÃO GRATUITA*%0A%0A` +
+                    `*Nome:* ${formData.get('nome')}%0A` +
+                    `*E-mail:* ${formData.get('email')}%0A` +
+                    `*WhatsApp:* ${formData.get('whatsapp')}%0A` +
+                    `*Marca:* ${formData.get('marca')}%0A` +
+                    `*CNPJ:* ${formData.get('cnpj')}%0A` +
+                    `*Ramo:* ${formData.get('ramo')}`;
+      
+      window.open(`https://wa.me/5583981436560?text=${texto}`, '_blank');
+      closeModal();
+      form.reset();
+    });
+  }
 </script>
