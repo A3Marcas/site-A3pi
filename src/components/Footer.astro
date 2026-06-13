@@ -6,34 +6,28 @@ const links = [
   { href: "#como-funciona", label: "Processo" },
   { href: "#faq", label: "FAQ" },
 ];
-
-// Configuração do WhatsApp (Padronizado com o restante do site)
-const whatsappNumber = "5583981436560"; 
-const whatsappMessage = encodeURIComponent("Olá! Gostaria de falar com um especialista sobre registro de marca.");
-const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 ---
 
-<footer class="footer" style="background-color: #001e13; color: #FFFFFF; padding: 80px 0 30px 0; font-family: sans-serif;">
-  <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+<footer class="footer">
+  <div class="container">
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 50px;">
+    <div class="footer-grid">
       
-      <div class="footer-info" onclick="window.location.href='/'">
-        <h3 style="color: #FFFFFF; font-size: 24px; font-weight: 800; line-height: 1.2; margin-bottom: 20px;">
-          A3 PROPRIEDADE<br/>
-          <span style="color: #8E2D45;">INTELECTUAL</span>
-        </h3>
-        <p style="color: #A39BB0; line-height: 1.6; font-size: 15px;">
+      <div class="footer-info">
+        <a href="/" class="logo-link" aria-label="Voltar ao início">
+          <img src="/assets/LOGO02.png" alt="A3 Propriedade Intelectual" class="img-logo-footer" />
+        </a>
+        <p class="footer-desc">
           Protegendo marcas e patentes com excelência jurídica, ética e foco total no resultado estratégico para o seu negócio.
         </p>
       </div>
       
-      <div class="footer-links">
-        <h4 style="color: #FFFFFF; text-transform: uppercase; font-size: 14px; letter-spacing: 2px; margin-bottom: 25px;">Navegação</h4>
-        <ul style="list-style: none; padding: 0; margin: 0;">
+      <div class="footer-links-container">
+        <h4 class="footer-title">Navegação</h4>
+        <ul class="footer-links">
           {links.map(link => (
-            <li style="margin-bottom: 12px;">
-              <a href={link.href} style="color: #A39BB0; text-decoration: none; transition: 0.3s; font-size: 15px;">
+            <li>
+              <a href={link.href} class="footer-link">
                 {link.label}
               </a>
             </li>
@@ -42,19 +36,141 @@ const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
       </div>
 
       <div class="footer-contact">
-        <h4 style="color: #FFFFFF; text-transform: uppercase; font-size: 14px; letter-spacing: 2px; margin-bottom: 25px;">Contato</h4>
-        <p style="color: #A39BB0; font-size: 15px; margin-bottom: 10px;">
-          E-mail: <a href="mailto:contato@a3pi.com.br" style="color: #A39BB0; text-decoration: none;">contato@a3pi.com.br</a>
+        <h4 class="footer-title">Contato</h4>
+        <p class="contact-text">
+          E-mail: <a href="mailto:contato@a3pi.com.br" class="footer-link">contato@a3pi.com.br</a>
         </p>
-        <p style="color: #A39BB0; font-size: 15px; font-weight: 600;">Atendimento Nacional</p>
-        <div style="margin-top: 25px;">
-           <a href={whatsappLink} target="_blank" style="background-color: #8E2D45; color: #FFFFFF; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 13px; text-transform: uppercase; display: inline-block; transition: 0.3s;">
-             Falar com Especialista →
-           </a>
+        <p class="contact-highlight">Atendimento Nacional</p>
+        <div class="btn-wrapper">
+           <button class="btn-menta-outline open-modal-btn">Falar com Especialista →</button>
         </div>
       </div>
     </div>
 
-    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center;">
-      <p style="color: #635A70; font-size: 13px; margin: 0;">
-        &copy; 2026 A3 Propriedade Intelectual. Todos os direitos reservados.
+    <div class="footer-bottom">
+      <p>&copy; 2026 A3 Propriedade Intelectual. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: #001e13; /* Verde Profundo */
+    color: #FFFFFF;
+    padding: 80px 0 30px 0;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+
+  .footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: opacity 0.2s;
+  }
+
+  .logo-link:hover {
+    opacity: 0.85;
+  }
+
+  .img-logo-footer {
+    height: 46px; /* Um bom tamanho para a logo no rodapé */
+    width: auto;
+    object-fit: contain;
+  }
+
+  .footer-desc {
+    color: rgba(255, 255, 255, 0.7); /* Branco com 70% de opacidade para leitura suave */
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .footer-title {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+
+  .footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 0.95rem;
+  }
+
+  .footer-link:hover {
+    color: #A9D1C0; /* Efeito Menta no hover */
+  }
+
+  .contact-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .contact-highlight {
+    color: #A9D1C0; /* Menta para destacar o atendimento nacional */
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .btn-wrapper {
+    margin-top: 25px;
+  }
+
+  .btn-menta-outline {
+    background-color: transparent;
+    color: #A9D1C0;
+    border: 2px solid #A9D1C0;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-menta-outline:hover {
+    background-color: #A9D1C0;
+    color: #000908;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: rgba(255, 255, 255, 0.5); /* Texto dos direitos autorais bem discreto */
+    font-size: 0.85rem;
+    margin: 0;
+  }
+</style>
