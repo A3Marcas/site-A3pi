@@ -6,14 +6,18 @@ const { titulo, descricao } = Astro.props;
 ---
 <!doctype html>
 <html lang="pt-br">
-	<head>
-		<BaseHead title={titulo} description={descricao} />
-	</head>
-	<body>
-		<slot />
-		<Footer />
-		<ModalCaptura />
-	</body>
+  <head>
+    <BaseHead title={titulo} description={descricao} />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <slot />
+    <Footer />
+    <ModalCaptura />
+  </body>
 </html>
 
 <style is:global>
@@ -21,7 +25,19 @@ const { titulo, descricao } = Astro.props;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: background-color: #F8F9FA; 
+    background-color: #F8F9FA; 
+    
+    /* Fonte Padrão (Leitura): Aplicada no site inteiro automaticamente */
+    font-family: 'Inter', sans-serif;
+    color: #000908;
+    -webkit-font-smoothing: antialiased; /* Deixa a fonte mais nítida no Chrome/Safari */
+  }
+
+  /* Fonte de Títulos (Impacto): Aplicada automaticamente em todos os Cabeçalhos */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-top: 0;
   }
 
   *, *::before, *::after {
