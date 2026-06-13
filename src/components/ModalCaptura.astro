@@ -28,17 +28,19 @@
 </div>
 
 <style>
-  .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 10000; justify-content: center; align-items: center; }
-  .modal-content { background: #FFFFFF; color: #2D1B41; padding: 40px; border-radius: 16px; width: 95%; max-width: 580px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-  .close-btn { position: absolute; top: 15px; right: 20px; font-size: 32px; background: none; border: none; cursor: pointer; color: #2D1B41; }
-  .modal-header h2 { color: #2D1B41; font-size: 2rem; margin-bottom: 10px; }
-  .modal-header p { color: #666; font-size: 1rem; margin-bottom: 30px; }
+  .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 9, 8, 0.85); backdrop-filter: blur(8px); z-index: 10000; justify-content: center; align-items: center; } /* Fundo agora tem base no nosso Quase Preto */
+  .modal-content { background: #FFFFFF; color: #000908; padding: 40px; border-radius: 16px; width: 95%; max-width: 580px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+  .close-btn { position: absolute; top: 15px; right: 20px; font-size: 32px; background: none; border: none; cursor: pointer; color: #001e13; transition: color 0.2s; }
+  .close-btn:hover { color: #A9D1C0; } /* Hover menta no botão de fechar */
+  .modal-header h2 { color: #001e13; font-size: 2rem; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; } /* Verde Profundo e fonte correta */
+  .modal-header p { color: #406962; font-size: 1rem; margin-bottom: 30px; } /* Verde acinzentado */
   .form-group { margin-bottom: 20px; text-align: left; flex: 1; }
-  .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #8E2D45; margin-bottom: 8px; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #032F2E; margin-bottom: 8px; } /* Esmeralda Escuro */
   .form-row { display: flex; gap: 20px; }
-  input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; }
-  .btn-submit { width: 100%; background-color: #8E2D45; color: white; padding: 18px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-  .btn-submit:hover { background-color: #2D1B41; }
+  input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; font-family: 'Inter', sans-serif; transition: border-color 0.3s; }
+  input:focus { outline: none; border-color: #A9D1C0; box-shadow: 0 0 0 3px rgba(169, 209, 192, 0.2); } /* Foco Menta */
+  .btn-submit { width: 100%; background-color: #A9D1C0; color: #000908; padding: 18px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; font-family: 'Inter', sans-serif;} /* Botão Menta */
+  .btn-submit:hover { background-color: #032F2E; color: #FFFFFF; } /* Hover para o Esmeralda Escuro */
   @media (max-width: 768px) { .form-row { flex-direction: column; gap: 0; } .modal-content { padding: 30px 20px; } }
 </style>
 
@@ -62,7 +64,11 @@
 
     const close = () => { modal.style.display = 'none'; document.body.style.overflow = 'auto'; };
     closeBtn.onclick = close;
-    window.onclick = (e) => { if (e.target === modal) close(); };
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            close();
+        }
+    });
 
     if (form) {
       form.onsubmit = (e) => {
