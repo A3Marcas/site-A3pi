@@ -24,37 +24,113 @@ const passos = [
 ];
 ---
 
-<section id="como-funciona" style="padding: 80px 0; background-color: #FFFFFF; font-family: sans-serif;">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+<section id="como-funciona" class="como-funciona">
+  <div class="container">
     
-    <div style="text-align: center; margin-bottom: 50px;">
-      <span style="color: #8E2D45; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; display: block; margin-bottom: 10px;">
-        Passo a Passo
-      </span>
-      <h2 style="color: #2D1B41; font-size: 42px; margin: 0; font-weight: 800;">
-        O Caminho para sua Marca Registrada
-      </h2>
+    <div class="cabecalho text-center">
+      <span class="tag-menta">Passo a Passo</span>
+      <h2 class="titulo-secao">O Caminho para sua Marca Registrada</h2>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+    <div class="grid-passos">
       {passos.map(p => (
-        <div style="background: #FFFFFF; padding: 40px 25px; border-radius: 15px; border: 1px solid #E0E0E0; position: relative; overflow: hidden; min-height: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-          
-          <div style="position: relative; z-index: 2;">
-            <h3 style="color: #2D1B41; font-size: 22px; margin-bottom: 15px; font-weight: 700;">
-              {p.titulo}
-            </h3>
-            <p style="color: #444444; font-size: 16px; line-height: 1.6; margin: 0;">
-              {p.descricao}
-            </p>
+        <div class="passo-card">
+          <div class="passo-conteudo">
+            <h3 class="passo-titulo">{p.titulo}</h3>
+            <p class="passo-desc">{p.descricao}</p>
           </div>
-
-          <span style="position: absolute; top: 10px; right: 15px; font-size: 70px; font-weight: 900; color: #F0F0F0; z-index: 1; line-height: 1;">
-            {p.numero}
-          </span>
-          
+          <span class="passo-numero">{p.numero}</span>
         </div>
       ))}
     </div>
+
   </div>
 </section>
+
+<style>
+  .como-funciona {
+    padding: 100px 0;
+    background-color: #FFFFFF; /* Fundo limpo para leitura */
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .cabecalho {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .tag-menta {
+    color: #406962; /* Verde Acinzentado */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .titulo-secao {
+    color: #000908; /* Quase Preto */
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0;
+    font-family: serif;
+  }
+
+  .grid-passos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+
+  .passo-card {
+    background: #F9F9F9; /* Fundo leve para destacar do fundo branco do site */
+    padding: 40px 25px;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .passo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(3, 47, 46, 0.1); /* Sombra Esmeralda suave */
+  }
+
+  .passo-conteudo {
+    position: relative;
+    z-index: 2;
+  }
+
+  .passo-titulo {
+    color: #001e13; /* Verde Profundo */
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-family: serif;
+  }
+
+  .passo-desc {
+    color: #406962; /* Verde Acinzentado para leitura contínua */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .passo-numero {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(169, 209, 192, 0.25); /* Menta com transparência agindo como marca d'água */
+    z-index: 1;
+    line-height: 1;
+    user-select: none;
+  }
+</style>
